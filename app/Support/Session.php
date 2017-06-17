@@ -21,7 +21,7 @@ class Session
 
     static public function removeAll()
     {
-        $_SESSION[$segmentName] = [];
+        $_SESSION[self::$segmentName] = [];
     }
 
     static public function get($key, $default = null)
@@ -37,7 +37,9 @@ class Session
     static public function start()
     {
         session_start();
-        $_SESSION[$segmentName] = [];
+        if (empty($_SESSION[self::$segmentName])) {
+            $_SESSION[self::$segmentName] = [];
+        }
     }
 
     static public function restart()

@@ -15,3 +15,10 @@ $app->get('/', function () use ($app) {
     return $app->version();
 });
 
+$app->post('/login', ['uses' => 'User@login']);
+
+$app->group(['middleware' => 'auth'], function () use ($app) {
+    $app->get('/logout', ['uses' => 'User@logout']);
+
+    $app->get('/profile', ['uses' => 'User@profile']);
+});
