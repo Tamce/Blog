@@ -19,6 +19,13 @@ $app->post('/login', ['uses' => 'User@login']);
 
 $app->group(['middleware' => 'auth'], function () use ($app) {
     $app->get('/logout', ['uses' => 'User@logout']);
-
     $app->get('/profile', ['uses' => 'User@profile']);
+
+    $app->get('/posts', ['uses' => 'Post@read']);
+    $app->post('/posts', ['uses' => 'Post@create']);
+    $app->patch('/posts/{id}', ['uses' => 'Post@update']);
+    $app->get('/posts/{id}', function ($id) {
+        return redirect('/posts?id='.$id);
+    });
+    $app->delete('/posts/{id}', ['uses' => 'Post@delete']);
 });

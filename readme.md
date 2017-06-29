@@ -5,4 +5,12 @@
     - [X] Login
     - [X] Logout
     - [X] Show profile
-- [ ] Basic Posts APIs
+- [X] Basic Posts APIs
+    - [X] List
+    - [X] Create
+    - [X] Update
+    - [X] Read
+    - [X] Delete
+- [ ] Comment system
+- [ ] Authentication control
+- [ ] Open user system

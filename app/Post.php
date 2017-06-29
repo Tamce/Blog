@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'topic', 'body', 'created_by'
+        'topic', 'body', 'summary'
     ];
 
     public function user()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User', 'created_by');
     }
 }

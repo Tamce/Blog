@@ -17,7 +17,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     ];
 
     protected $hidden = [
-        'password', 'remember_token'
+        'password', 'remember_token', 'updated_at'
     ];
 
     public function posts()

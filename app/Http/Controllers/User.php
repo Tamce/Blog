@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Support\Session;
 
 class User extends Controller
@@ -23,12 +24,7 @@ class User extends Controller
 
     public function profile()
     {
-        $user = Session::get('user.model');
-        if (null == $user)
-        {
-            Session::destroy();
-            return response()->json(['message' => 'Authenticate failed!'], 401);
-        }
+        $user = Auth::user();
         return response()->json($user);
     }
 
