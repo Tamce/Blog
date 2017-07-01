@@ -7,18 +7,24 @@ use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use App\Support\Helper;
 
 class User extends Model implements AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable;
 
     protected $fillable = [
-        'name'
+        'name', 'password'
     ];
 
     protected $hidden = [
-        'password', 'remember_token', 'updated_at'
+        'id', 'password', 'remember_token', 'updated_at'
     ];
+
+    public function __construct()
+    {
+        $this->hash = Helper::randomString(32);
+    }
 
     public function posts()
     {

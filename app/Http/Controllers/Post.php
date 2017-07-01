@@ -17,9 +17,9 @@ class Post extends Controller
         return response()->json($post);
     }
 
-    public function update($id, Request $request)
+    public function update($hash, Request $request)
     {
-        $post = \App\Post::findOrFail($id);
+        $post = \App\Post::where('hash', $hash)->firstOrFail();
         $post->fill($request->all());
         $post->save();
         return response()->json($post);
@@ -27,9 +27,9 @@ class Post extends Controller
 
     public function read(Request $request)
     {
-        if ($request->has('id'))
+        if ($request->has('hash'))
         {
-            $post = \App\Post::findOrFail($request->id);
+            $post = \App\Post::where('hash', $request->hash)->firstOrFail();
             return response()->json($post);
         }
 
@@ -40,9 +40,9 @@ class Post extends Controller
         return response()->json(['count' => $count, 'skip' => $skip, 'take' => $take, 'data' => $posts]);
     }
 
-    public function delete($id)
+    public function delete($hash)
     {
-        $post = \App\Post::findOrFail($id);
+        $post = \App\Post::where('hash', $hash)->firstOrFail();
         $post->delete();
         return response()->json(['status' => 'success', 'message' => 'Done.']);
     }
