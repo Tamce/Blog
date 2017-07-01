@@ -1,4 +1,5 @@
 <?php
+use Tamce\Renderer;
 /**
  * APIs
  */
@@ -21,7 +22,7 @@ $app->group(['prefix' => 'api'], function () use ($app) {
 /**
  * Front End
  */
-$app->get('/', function () use ($app) {
-    return $app->version();
+$app->get('{any:.*}', function () use ($app) {
+    Renderer::render('index');
 });
 

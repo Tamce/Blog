@@ -1,5 +1,5 @@
 <?php
-
+use Tamce\Renderer;
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -24,5 +24,5 @@ $app = require __DIR__.'/../bootstrap/app.php';
 | and wonderful application we have prepared for them.
 |
 */
-
+Renderer::path($app->resourcePath('views'));
 $app->run();

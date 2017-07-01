@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "dae21f528b20ab489bc46bfb364b803e",
+    "content-hash": "2f59df9ce9248c45a09959e75f3a053b",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -2079,6 +2079,32 @@
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
             "time": "2017-05-22T07:42:36+00:00"
+        },
+        {
+            "name": "tamce/renderer",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tamce/renderer.git",
+                "reference": "9651e8b05cc7414899c4a640c765e865db804a64"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tamce\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tamce",
+                    "email": "tamce@outlook.com"
+                }
+            ],
+            "description": "A basic view renderer",
+            "time": "2017-07-01T05:45:31+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
