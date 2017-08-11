@@ -27,9 +27,13 @@ class Post extends Controller
 
     public function read(Request $request)
     {
-        if ($request->has('hash'))
-        {
+        if ($request->has('hash')) {
             $post = \App\Post::where('hash', $request->hash)->firstOrFail();
+            return response()->json($post);
+        }
+
+        if ($request->has('uri')) {
+            $post = \App\Post::where('uri', $request->input('uri'))->firstOrFail();
             return response()->json($post);
         }
 
