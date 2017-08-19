@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2f59df9ce9248c45a09959e75f3a053b",
+    "content-hash": "c9523174b5abbd3d0e188140852cc4c8",
     "packages": [
         {
             "name": "doctrine/inflector",
@@ -2082,11 +2082,11 @@
         },
         {
             "name": "tamce/renderer",
-            "version": "0.1.0",
+            "version": "0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tamce/renderer.git",
-                "reference": "9651e8b05cc7414899c4a640c765e865db804a64"
+                "reference": "a94e9909cef52289ccc0cd4b6a4224eae3aa7d92"
             },
             "type": "library",
             "autoload": {
@@ -2104,7 +2104,7 @@
                 }
             ],
             "description": "A basic view renderer",
-            "time": "2017-07-01T05:45:31+00:00"
+            "time": "2017-08-19T14:30:49+00:00"
         },
         {
             "name": "vlucas/phpdotenv",

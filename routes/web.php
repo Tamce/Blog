@@ -22,6 +22,9 @@ $app->group(['prefix' => 'api'], function () use ($app) {
 /**
  * Front End
  */
+$app->get('/modules/routes', function () use ($app) {
+    Renderer::render('/modules/routes.js', ['mimeType' => 'text/javascript']);
+});
 $app->get('{any:.*}', function () use ($app) {
     Renderer::render('index');
 });

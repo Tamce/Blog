@@ -14,7 +14,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     use Authenticatable, Authorizable;
 
     protected $fillable = [
-        'name', 'password'
+        'name', 'nick', 'password'
     ];
 
     protected $hidden = [
@@ -34,5 +34,10 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function setPasswordAttribute($value)
     {
         $this->attributes['password'] = password_hash($value, PASSWORD_BCRYPT);
+    }
+
+    public function auth($password)
+    {
+        return password_verify($password, $this->password);
     }
 }
