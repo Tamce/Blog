@@ -24,7 +24,7 @@ Post({
     topic: "string",
     summary: "string",
     body: "string",
-    createdBy: "integer",
+    created_by: "integer",
     created_at: "datetime",
     updated_at: "datetime"
 });
@@ -34,7 +34,7 @@ User({
     name: "string",
     nick: "string",
     updated_at: "datetime"
-})
+});
 ```
 
 ### APIs
