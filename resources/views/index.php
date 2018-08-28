@@ -1,6 +1,8 @@
 <html>
 <head>
 	<title>Tamce - Technology and So On</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
   <div id="loading-vue">
@@ -43,10 +45,31 @@
   <script src="/static/js/vue-router.js"></script>
 	<script src="/static/js/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="/static/styles/bootstrap.min.css">
-  <script src="/modules/routes"></script>
+  <script src="/static/js/tmodule.js"></script>
 	<script>
 	(function () {
-    var router = new VueRouter({routes: tmodule.routes});
+    var router = new VueRouter({
+      routes: [
+        {
+          name: 'blog',
+          path: '/blog',
+          component: tmodule.lazyComponent('blog')
+        }, {
+          name: 'home',
+          path: '/',
+          component: tmodule.lazyComponent('home')
+        }, {
+          name: 'login',
+          path: '/login',
+          component: tmodule.lazyComponent('login')
+        }, {
+          name: 'post',
+          path: '/post/:hash',
+          component: tmodule.lazyComponent('post')
+        }
+      ]
+    });
+    // Don't know why nothing happened with <transition>, using hook to do the animation
     router.beforeEach((to, from, next) => {
       $(".view").css("display", "none");
       next();

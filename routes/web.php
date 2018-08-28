@@ -22,10 +22,17 @@ $app->group(['prefix' => 'api'], function () use ($app) {
 /**
  * Front End
  */
-$app->get('/modules/routes', function () use ($app) {
-    Renderer::render('/modules/routes.js', ['mimeType' => 'text/javascript']);
+$app->get('/modules/{name}', function ($name) {
+    try {
+        Renderer::render('modules/'.$name.'.vue');
+    } catch (\Exception $e) {
+        abort(404);
+    }
 });
-$app->get('{any:.*}', function () use ($app) {
+$app->get('/', function () {
     Renderer::render('index');
+});
+$app->get('{any:.*}', function () {
+    abort(404);
 });
 
