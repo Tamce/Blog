@@ -28,20 +28,21 @@ class Post extends Controller
     public function read(Request $request)
     {
         if ($request->has('hash')) {
-            $post = \App\Post::where('hash', $request->hash)->firstOrFail();
+            $post = \App\Post::with('author:id,hash,name')->where('hash', $request->hash)->firstOrFail();
             return response()->json($post);
         }
 
-        if ($request->has('uri')) {
-            $post = \App\Post::where('uri', $request->input('uri'))->firstOrFail();
+        if ($request->has('shortname')) {
+            $post = \App\Post::with('author:id,hash,name')->where('shortname', $request->input('shortname'))->firstOrFail();
             return response()->json($post);
         }
 
         $skip = $request->input('skip', 0);
         $take = $request->input('take', 10);
         $count = \App\Post::count();
-        $posts = \App\Post::skip($skip)->take($take)->get();
-        return response()->json(['count' => $count, 'skip' => $skip, 'take' => $take, 'data' => $posts]);
+        $posts = \App\Post::with('author:id,hash,name')->skip($skip)->take($take)->get();
+        // Select * and hide 'body', how to directly not selecting 'body'?
+        return response()->json(['count' => $count, 'skip' => $skip, 'take' => $take, 'data' => $posts->makeHidden('body')]);
     }
 
     public function delete($hash)

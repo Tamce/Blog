@@ -24,7 +24,6 @@
         <div class="collapse navbar-collapse" id="nav-body">
           <ul class="nav navbar-nav">
             <li v-bind:class="{active: $route.name == 'home'}"><router-link to="/">Home</router-link></li>
-            <li v-bind:class="{active: $route.name == 'blog'}"><router-link to="/blog">Blog</router-link></li>
             <li v-bind:class="{active: $route.name == 'post'}" v-if="$route.name == 'post'"><router-link :to="'/post/'+$route.params.hash">Post</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
@@ -49,6 +48,7 @@
 	<script>
 	(function () {
     var router = new VueRouter({
+      mode: 'history',
       routes: [
         {
           name: 'blog',
@@ -64,11 +64,17 @@
           component: tmodule.lazyComponent('login')
         }, {
           name: 'post',
-          path: '/post/:hash',
-          component: tmodule.lazyComponent('post')
+          path: '/post/:shortname',
+          component: tmodule.lazyComponent('post'),
+          props: true
+        }, {
+          name: 'notFound',
+          path: '*',
+          component: tmodule.lazyComponent('notFound')
         }
       ]
     });
+    Vue.component('post', tmodule.lazyComponent('post-item'));
     // Don't know why nothing happened with <transition>, using hook to do the animation
     router.beforeEach((to, from, next) => {
       $(".view").css("display", "none");

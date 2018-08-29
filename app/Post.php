@@ -8,11 +8,11 @@ use App\Support\Helper;
 class Post extends Model
 {
     protected $fillable = [
-        'topic', 'body', 'summary', 'uri'
+        'topic', 'body', 'summary', 'shortname'
     ];
 
     protected $hidden = [
-        'id'
+        'id', 'created_by'
     ];
 
     public function __construct()
@@ -20,7 +20,7 @@ class Post extends Model
         $this->hash = Helper::randomString(32);
     }
 
-    public function user()
+    public function author()
     {
         return $this->belongsTo('App\User', 'created_by');
     }

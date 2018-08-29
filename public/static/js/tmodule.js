@@ -10,8 +10,14 @@ module.loadComponent = (name, resolve) => {
     console.log(`[tmodule] Loading component '${name}'`);
     $.get(`/modules/${name}`).then(data => {
         let dom = $(`<div>${data}</div>`);
-        let component = $('script', dom).html().replace(/\s(export\sdefault)\s/, '');
-        component = eval(`(${component})`);
+        let component = {};
+        // Ensure that the script will not be interrupted if the component does not has a <script> tag
+        try {
+            component = $('script', dom).html().replace(/\s(export\sdefault)\s/, '');
+            component = eval(`(${component})`);
+        } catch (e) {
+            console.warn(`[tmodule] Script tag empty or error while loading component '${name}', ignoring...`);
+        }
         component.template = $('template', dom).html();
         // For the time being, Just Inject style tag into <head>
         $('head').append($('style', dom));
