@@ -27,7 +27,7 @@
             <li v-bind:class="{active: $route.name == 'post'}" v-if="$route.name == 'post'"><router-link :to="'/post/'+$route.params.hash">Post</router-link></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <p class="navbar-text" v-if="!!user">Signed in as {{user.name}}</p>
+            <p class="navbar-text" v-if="!!user"><router-link to="/panel" class="navbar-link">Signed in as {{user.name}}</router-link></p>
             <li v-if="!user && $route.name != 'login'"><router-link to="/login">Login</router-link></li>
           </ul>
         </div>
@@ -35,7 +35,7 @@
 		</div>
     <transition name="fade" mode="out-in">
       <!-- don't know why this f**king transition is no use -->
-      <div class="view"><router-view></router-view></div>
+      <div class="view"><router-view @login="login"></router-view></div>
     </transition>
     </div>
   </div>
@@ -68,6 +68,10 @@
           component: tmodule.lazyComponent('post'),
           props: true
         }, {
+          name: 'panel',
+          path: '/panel',
+          component: tmodule.lazyComponent('panel')
+        }, {
           name: 'notFound',
           path: '*',
           component: tmodule.lazyComponent('notFound')
@@ -88,16 +92,20 @@
       router: router,
       data: () => ({
         loaded: true,
-        user: null
-      })
+        user: false
+      }),
+      methods: {
+        login: function (d) {
+          this.user = d;
+        }
+      }
     });
-    if (app) {
-      clearInterval(id);
-      delete id;
-      $("#loading-vue").remove();
-    } else {
-      alert("An error occurred when loading essential js file! This page could not be shown properly!");
-    }
+    clearInterval(id);
+    delete id;
+    $("#loading-vue").remove();
+    $.get('/api/profile').then(d => {
+      app.user = d;
+    });
 	})();
 	</script>
 </body>

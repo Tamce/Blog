@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="col-md-6 col-md-offset-3">
-      <post v-for="post in posts" :key="post.hash" v-bind="post"></post>
+      <post v-for="post in posts" :key="post.hash" v-bind="post" @click.native="detail(post.shortname)"></post>
     </div>
   </div>
 </template>
@@ -17,6 +17,11 @@ export default {
   data: () => {
     return {
       posts: []
+    }
+  },
+  methods: {
+    detail: function (shortname) {
+      this.$router.push({name: 'post', params: { shortname: shortname }})
     }
   }
 }

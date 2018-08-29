@@ -14,7 +14,7 @@ class User extends Controller
             return response()->json(['message' => 'Bad Request!'], 400);
         }
         $user = \App\User::where('name', $request->input('name'))->first();
-        if (null == $user or $user->auth($request->input('password')))
+        if (null == $user or !$user->auth($request->input('password')))
         {
             return response()->json(['message' => 'Authenticate failed!'], 401);
         }
