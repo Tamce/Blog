@@ -3,6 +3,11 @@
 	<title>Tamce - Technology and So On</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+   .en-font {
+    font-family: -apple-system,BlinkMacSystemFont,San Francisco,Helvetica Neue,Helvetica,Ubuntu,Roboto,Noto,Segoe UI,Arial,sans-serif;
+   }
+  </style>
 </head>
 <body>
   <div id="loading-vue">
