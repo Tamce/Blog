@@ -6,15 +6,15 @@ use Tamce\Renderer;
 $app->group(['prefix' => 'api'], function () use ($app) {
     $app->post('/login', ['uses' => 'User@login']);
     $app->get('/posts', ['uses' => 'Post@read']);
-    $app->get('/posts/{hash}', function ($hash) {
-        return redirect('/posts?hash='.$hash);
+    $app->get('/posts/{shortname}', function ($shortname) {
+        return redirect('/posts?shortname='.$shortname);
     });
     $app->group(['middleware' => 'auth'], function () use ($app) {
         $app->get('/logout', ['uses' => 'User@logout']);
         $app->get('/profile', ['uses' => 'User@profile']);
         $app->post('/posts', ['uses' => 'Post@create']);
-        $app->patch('/posts/{hash}', ['uses' => 'Post@update']);
-        $app->delete('/posts/{hash}', ['uses' => 'Post@delete']);
+        $app->patch('/posts/{shortname}', ['uses' => 'Post@update']);
+        $app->delete('/posts/{shortname}', ['uses' => 'Post@delete']);
     });
 });
 

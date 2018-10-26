@@ -17,9 +17,9 @@ class Post extends Controller
         return response()->json($post);
     }
 
-    public function update($hash, Request $request)
+    public function update($shortname, Request $request)
     {
-        $post = \App\Post::where('hash', $hash)->firstOrFail();
+        $post = \App\Post::where('shortname', $shortname)->firstOrFail();
         $post->fill($request->all());
         $post->save();
         return response()->json($post);
@@ -45,9 +45,9 @@ class Post extends Controller
         return response()->json(['count' => $count, 'skip' => $skip, 'take' => $take, 'data' => $posts->makeHidden('body')]);
     }
 
-    public function delete($hash)
+    public function delete($shortname)
     {
-        $post = \App\Post::where('hash', $hash)->firstOrFail();
+        $post = \App\Post::where('shortname', $shortname)->firstOrFail();
         $post->delete();
         return response()->json(['status' => 'success', 'message' => 'Done.']);
     }

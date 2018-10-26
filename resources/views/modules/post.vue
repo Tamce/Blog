@@ -9,10 +9,9 @@
 </template>
 <script>
 export default {
-  props: ['shortname'],
   beforeRouteEnter : function (to, from, next) {
     next(vm => {
-      $.get('/api/posts?shortname=' + vm.shortname).then(d => {
+      $.get('/api/posts?shortname=' + vm.$route.params.shortname).then(d => {
         vm.post = d;
         vm.author = d.author;
       });

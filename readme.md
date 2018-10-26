@@ -20,11 +20,15 @@
 ```js
 Post({
     hash: "string",
-    uri: "string",
+    shortname: "string",
     topic: "string",
     summary: "string",
     body: "string",
     created_by: "integer",
+    [author]: {
+        hash: "string",
+        name: "string"
+    }
     created_at: "datetime",
     updated_at: "datetime"
 });
@@ -32,7 +36,6 @@ Post({
 User({
     hash: "string",
     name: "string",
-    nick: "string",
     updated_at: "datetime"
 });
 ```
@@ -43,6 +46,7 @@ User({
 * `GET /profile`
 * `GET /posts`
 * `POST /posts`
-* `PATCH /posts/{hash}`
-* `GET /posts/{hash}`
-* `DELETE /posts/{hash}`
+* `PATCH /posts/{shortname}`
+* `GET /posts/{shortname}`
+    * `GET /posts[?hash=xxx|shortname=xxx][?skip=0][?take=10]`
+* `DELETE /posts/{shortname}`

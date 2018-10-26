@@ -8,6 +8,7 @@
     font-family: -apple-system,BlinkMacSystemFont,San Francisco,Helvetica Neue,Helvetica,Ubuntu,Roboto,Noto,Segoe UI,Arial,sans-serif;
    }
   </style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
   <div id="loading-vue">
@@ -29,7 +30,7 @@
         <div class="collapse navbar-collapse" id="nav-body">
           <ul class="nav navbar-nav">
             <li v-bind:class="{active: $route.name == 'home'}"><router-link to="/">Home</router-link></li>
-            <li v-bind:class="{active: $route.name == 'post'}" v-if="$route.name == 'post'"><router-link :to="'/post/'+$route.params.hash">Post</router-link></li>
+            <li v-bind:class="{active: $route.name == 'post'}" v-if="$route.name == 'post'"><a href="#">Post</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <p class="navbar-text" v-if="!!user"><router-link to="/panel" class="navbar-link">Signed in as {{user.name}}</router-link></p>
@@ -48,7 +49,6 @@
 	<script src="/static/js/vue.js"></script>
   <script src="/static/js/vue-router.js"></script>
 	<script src="/static/js/bootstrap.min.js"></script>
-	<link rel="stylesheet" href="/static/styles/bootstrap.min.css">
   <script src="/static/js/tmodule.js"></script>
 	<script>
 	(function () {
@@ -76,6 +76,10 @@
           name: 'panel',
           path: '/panel',
           component: tmodule.lazyComponent('panel')
+        }, {
+          name: 'edit',
+          path: '/edit/:shortname',
+          component: tmodule.lazyComponent('edit')
         }, {
           name: 'notFound',
           path: '*',
