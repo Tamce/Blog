@@ -17,33 +17,35 @@
   </div>
 	<div id="app">
     <div style="display: none;" v-show="loaded">
-		<div id="navbar" class="navbar navbar-default">
-			<div class="container-fluid">
-				<div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-body" aria-expanded="false">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <router-link class="navbar-brand" to="/">Tamce</router-link>
-				</div>
-        <div class="collapse navbar-collapse" id="nav-body">
-          <ul class="nav navbar-nav">
-            <li v-bind:class="{active: $route.name == 'home'}"><router-link to="/">Home</router-link></li>
-            <li v-bind:class="{active: $route.name == 'post'}" v-if="$route.name == 'post'"><a href="#">Post</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <p class="navbar-text" v-if="!!user"><router-link to="/panel" class="navbar-link">Signed in as {{user.name}}</router-link></p>
-            <li v-if="!user && $route.name != 'login'"><router-link to="/login">Login</router-link></li>
-          </ul>
+      <div id="navbar" class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#nav-body" aria-expanded="false">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <router-link class="navbar-brand" to="/">Tamce</router-link>
+          </div>
+          <div class="collapse navbar-collapse" id="nav-body">
+            <ul class="nav navbar-nav">
+              <li v-bind:class="{active: $route.name == 'home'}"><router-link to="/">Home</router-link></li>
+              <li v-bind:class="{active: $route.name == 'post'}" v-if="$route.name == 'post'"><a href="#">Post</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+              <p class="navbar-text" v-if="!!user"><router-link to="/panel" class="navbar-link">Signed in as {{user.name}}</router-link></p>
+              <li v-if="!user && $route.name != 'login'"><router-link to="/login">Login</router-link></li>
+            </ul>
+          </div>
         </div>
-			</div>
-		</div>
-    <transition name="fade" mode="out-in">
-      <!-- don't know why this f**king transition is no use -->
-      <div class="view"><router-view @login="login"></router-view></div>
-    </transition>
+      </div>
+      <transition name="fade" mode="out-in">
+        <!-- don't know why this f**king transition is no use -->
+        <div class="view"><router-view @login="login"></router-view></div>
+      </transition>
     </div>
+    <hr style="width:80%;" />
+    <center style="margin-bottom: 32px;">Copyright &copy; 2018 by Tamce, All rights reserved.</center>
   </div>
   <script src="/static/js/jquery-3.2.1.min.js"></script>
 	<script src="/static/js/vue.js"></script>
